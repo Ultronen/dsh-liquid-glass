@@ -4,7 +4,7 @@ English | [中文](README.zh.md)
 
 **Liquid glass for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)** — one toggle, and the whole interface turns to glass.
 
-iOS-grade translucency: the page base, cards, panels and chat bubbles all go see-through over your own background image, with a single slider for exactly how much glass you want. Nothing else — the best tools are the simple ones.
+Translucency built for DeepSeek Harness: the page base, cards, panels and chat bubbles all go see-through over your own background image, with a single slider for exactly how much glass you want. Nothing else — the best tools are the simple ones.
 
 ## Install
 
