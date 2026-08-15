@@ -1,0 +1,58 @@
+{
+  "name": "dsh-theme-lab",
+  "version": "0.2.0",
+  "description": "Theme studio for DeepSeek Harness: 8 curated light/dark themes on the official ThemeRuntime, iOS-style Liquid Glass mode, custom wallpaper with opacity/blur controls, accent-color wheel, and import/export of shareable theme packs.",
+  "license": "MIT",
+  "author": "Ultronen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ultronen/dsh-theme-lab.git"
+  },
+  "homepage": "https://github.com/Ultronen/dsh-theme-lab",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "theme",
+    "skin",
+    "wallpaper",
+    "web-ui"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@deepseek-ai/cordis": "^4.0.1"
+  }
+}
