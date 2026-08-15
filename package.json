@@ -1,7 +1,7 @@
 {
   "name": "dsh-theme-lab",
-  "version": "0.2.0",
-  "description": "Theme studio for DeepSeek Harness: 8 curated light/dark themes on the official ThemeRuntime, iOS-style Liquid Glass mode, custom wallpaper with opacity/blur controls, accent-color wheel, and import/export of shareable theme packs.",
+  "version": "0.3.0",
+  "description": "iOS 液态玻璃：点一下，整个界面通透起来。透明度随心调，背景图自由换——让你的 Agent 住进风景里。iOS-style liquid glass: one toggle to make the whole shell translucent, with a live opacity slider and a custom full-page background.",
   "license": "MIT",
   "author": "Ultronen",
   "repository": {
