@@ -1,5 +1,5 @@
 /**
- * dsh-theme-lab smoke test — runs the real client.js under a mocked DSH
+ * dsh-liquid-glass smoke test — runs the real client.js under a mocked DSH
  * browser runtime (ModuleLoader, document, localStorage, cordis ctx) and
  * exercises the whole plugin lifecycle plus every user-facing action.
  * Run: node test/smoke.test.mjs
@@ -112,7 +112,7 @@ fn(windowMock, documentMock, (name) => {
 
 console.log('\n[1] module registration');
 assert(loadedModule !== null, 'client.js registers itself via __ModuleLoader__.load');
-assert(loadedModule.id === 'dsh-theme-lab', `module id is "dsh-theme-lab" (got "${loadedModule.id}")`);
+assert(loadedModule.id === 'dsh-liquid-glass', `module id is "dsh-liquid-glass" (got "${loadedModule.id}")`);
 
 console.log('\n[2] factory exports');
 const factoryResult = loadedModule.factory((name) => moduleTable[name]);
@@ -124,24 +124,24 @@ console.log('\n[3] apply() under a mocked cordis ctx');
 factoryResult.apply(ctxMock);
 assert(ctxCalls.overrideTokens.length === 1, `glass layer applied on boot (default ON) — overrideTokens called ${ctxCalls.overrideTokens.length}x`);
 const boot = ctxCalls.overrideTokens[0];
-assert(boot.source === 'dsh-theme-lab:glass', 'glass override uses the glass source id');
+assert(boot.source === 'dsh-liquid-glass:glass', 'glass override uses the glass source id');
 const tokenKeys = Object.keys(boot.overrides);
 assert(tokenKeys.includes('--dsw-alias-bg-base'), 'page base token is translucent (full-shell transparency)');
 assert(tokenKeys.includes('--dsw-alias-bg-layer-1'), 'surface layer token included');
 assert(tokenKeys.length === 8, `exactly 8 surface tokens covered (got ${tokenKeys.length})`);
 const baseLight = boot.overrides['--dsw-alias-bg-base'].light;
 assert(/rgba\(255, 255, 255, 0.62\)/.test(baseLight), `light surface is rgba(255,255,255,0.62) by default (got ${baseLight})`);
-const styleInjected = headChildren.some((c) => c.id === 'dsh-theme-lab-glass-css');
+const styleInjected = headChildren.some((c) => c.id === 'dsh-liquid-glass-glass-css');
 assert(styleInjected, 'backdrop-filter stylesheet injected into <head>');
-const cssText = headChildren.find((c) => c.id === 'dsh-theme-lab-glass-css')?.textContent || '';
+const cssText = headChildren.find((c) => c.id === 'dsh-liquid-glass-glass-css')?.textContent || '';
 assert(cssText.includes('data-plugin-css') === false, 'stylesheet does not leak the marker into CSS text');
-assert(headChildren.find((c) => c.id === 'dsh-theme-lab-glass-css')?.attrs['data-plugin-css'] === 'dsh-theme-lab', 'stylesheet carries data-plugin-css marker attribute');
+assert(headChildren.find((c) => c.id === 'dsh-liquid-glass-glass-css')?.attrs['data-plugin-css'] === 'dsh-liquid-glass', 'stylesheet carries data-plugin-css marker attribute');
 
 console.log('\n[4] settings row registration');
 assert(ctxCalls.slotRegister.length === 1, `exactly one settings row (got ${ctxCalls.slotRegister.length})`);
 const rowMeta = ctxCalls.slotRegister[0].meta;
 assert(rowMeta.name === 'settings.general.item', 'row lands in Settings → General');
-assert(rowMeta.locale === 'settings.theme-lab', 'row carries the locale namespace');
+assert(rowMeta.locale === 'settings.liquid-glass', 'row carries the locale namespace');
 assert(ctxCalls.localeRegister.length === 1, 'locale dictionaries registered once');
 const zhDict = ctxCalls.localeRegister[0].dicts.zh;
 assert(zhDict['row.title'] === '液态玻璃', 'zh title is 液态玻璃');
@@ -155,29 +155,29 @@ assert(typeof actions.setAlpha === 'function', 'setAlpha action exposed');
 assert(typeof actions.setWallpaper === 'function', 'setWallpaper action exposed');
 ctxCalls.overrideTokens.length = 0;
 actions.setGlass(false);
-assert(storageMap.get('dsh-theme-lab:glass') === 'off', 'toggle-off persisted as "off"');
+assert(storageMap.get('dsh-liquid-glass:glass') === 'off', 'toggle-off persisted as "off"');
 assert(ctxCalls.overrideTokens.length === 0, 'toggle-off removes the token layer (no new overrideTokens)');
-assert(createdElements.find((e) => e.id === 'dsh-theme-lab-glass-css')?.removed === true, 'toggle-off removes the stylesheet');
+assert(createdElements.find((e) => e.id === 'dsh-liquid-glass-glass-css')?.removed === true, 'toggle-off removes the stylesheet');
 
 console.log('\n[6] user actions — toggle on + sliders');
 actions.setGlass(true);
 assert(ctxCalls.overrideTokens.length === 1, 'toggle-on reapplies the token layer');
 actions.setAlpha(40);
-assert(storageMap.get('dsh-theme-lab:glass-alpha') === '0.6', 'transparency 40% persisted as surface alpha 0.6');
+assert(storageMap.get('dsh-liquid-glass:glass-alpha') === '0.6', 'transparency 40% persisted as surface alpha 0.6');
 const afterAlpha = ctxCalls.overrideTokens.at(-1).overrides['--dsw-alias-bg-base'].light;
 assert(afterAlpha.includes('0.6'), `override reflects surface alpha 0.6 for 40% transparency (got ${afterAlpha})`);
 
 console.log('\n[7] wallpaper actions');
 actions.setWallpaper('https://example.com/bg.jpg');
-assert(storageMap.get('dsh-theme-lab:wallpaper') === 'https://example.com/bg.jpg', 'wallpaper URL persisted');
+assert(storageMap.get('dsh-liquid-glass:wallpaper') === 'https://example.com/bg.jpg', 'wallpaper URL persisted');
 const wpEl = createdElements.filter((e) => e.tagName === 'DIV' && !e.removed).at(-1);
 assert(wpEl && /example\.com/.test(wpEl.style.backgroundImage || ''), 'wallpaper element created with the URL as background-image');
 actions.setWallpaper(null);
-assert(storageMap.get('dsh-theme-lab:wallpaper') === undefined, 'wallpaper removal clears storage');
+assert(storageMap.get('dsh-liquid-glass:wallpaper') === undefined, 'wallpaper removal clears storage');
 
 console.log('\n[8] slider clamping');
 actions.setAlpha(5);
-assert(Number(storageMap.get('dsh-theme-lab:glass-alpha')) >= 0.3, 'alpha clamped to the 30% floor');
+assert(Number(storageMap.get('dsh-liquid-glass:glass-alpha')) >= 0.3, 'alpha clamped to the 30% floor');
 
 console.log(failures === 0 ? '\n🎉 ALL CHECKS PASSED\n' : `\n💥 ${failures} CHECK(S) FAILED\n`);
 process.exit(failures === 0 ? 0 : 1);

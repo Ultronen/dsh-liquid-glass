@@ -1,14 +1,17 @@
 {
-  "name": "dsh-theme-lab",
-  "version": "0.3.0",
+  "name": "dsh-liquid-glass",
+  "version": "0.1.0",
   "description": "DeepSeek Harness 液态玻璃：点一下，整个界面通透起来。透明度随心调，背景图自由换——让你的 Agent 住进风景里。Liquid glass for DeepSeek Harness: one toggle to turn the whole shell translucent, with a live opacity slider and a custom full-page background.",
   "license": "MIT",
   "author": "Ultronen",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ultronen/dsh-theme-lab.git"
+    "url": "git+https://github.com/Ultronen/dsh-liquid-glass.git"
   },
-  "homepage": "https://github.com/Ultronen/dsh-theme-lab",
+  "homepage": "https://github.com/Ultronen/dsh-liquid-glass",
+  "bugs": {
+    "url": "https://github.com/Ultronen/dsh-liquid-glass/issues"
+  },
   "keywords": [
     "deepseek-harness",
     "dsh",

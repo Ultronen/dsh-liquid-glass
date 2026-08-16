@@ -1,4 +1,4 @@
-# dsh-theme-lab
+# dsh-liquid-glass
 
 English | [中文](README.zh.md)
 
@@ -9,7 +9,7 @@ Translucency built for DeepSeek Harness: the page base, cards, panels and chat b
 ## Install
 
 ```sh
-dsh plugin --profile web add dsh-theme-lab
+dsh plugin --profile web add dsh-liquid-glass
 ```
 
 Open **Settings → General** — a **Liquid Glass** row appears. It is ON by default; restart once after install.
@@ -17,14 +17,13 @@ Open **Settings → General** — a **Liquid Glass** row appears. It is ON by de
 ## What you get
 
 - **Full-shell transparency**: every surface the shell paints — page base, cards, panels, sidebar, chat bubbles, code blocks — goes translucent through the official ThemeRuntime token-override layer. Neutral white on the light scheme, near-black on dark.
-- **One master opacity slider** (30%–95%): lower values reveal more of the background.
-- **Blur intensity slider** (0–40px): real `backdrop-filter` frosted glass on cards and panels, injected through the shell's `data-plugin-css` convention.
+- **One master transparency slider** (3%–95%): higher values reveal more of the background.
 - **Full-page custom background**: upload a local image (auto-compressed for localStorage) or paste a URL. It spans the whole page behind the glass.
 
 ## Uninstall
 
 ```sh
-dsh plugin --profile web remove dsh-theme-lab
+dsh plugin --profile web remove dsh-liquid-glass
 ```
 
 Preferences live in this browser's localStorage and are left behind harmlessly.
